@@ -22,6 +22,7 @@ const NewProposal = () => {
         placeholder="Enter a new proposal"
         onChange={(e) => setProposal(e.target.value)}
         className="w-75 my-3"
+        rows={5}
       />
       <div className="container d-flex justify-content-center">
         <div className="row my-2 w-25">

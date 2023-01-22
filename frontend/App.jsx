@@ -25,7 +25,6 @@ import * as webPage from "../.dfx/local/canisters/webPage"
 import { AllProposals } from "./components/AllProposals"
 import HomePage from "./components/HomePage"
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom"
-import Vote from "./components/Vote"
 import NewProposal from "./components/NewProposal"
 
 function App() {
@@ -54,7 +53,9 @@ function App() {
         )}
         {wallet && (
           <Route path="/new-proposal" exact>
-            <NewProposal />
+            <div className="d-flex aligns-items-center justify-content-center">
+              <NewProposal />
+            </div>
           </Route>
         )}
         <Redirect to="/" />

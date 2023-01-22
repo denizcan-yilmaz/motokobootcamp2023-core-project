@@ -48,7 +48,7 @@ actor {
             buffer.add(proposal)
         };
         for (proposal in buffer.vals()) {
-            if (proposal.isActive and proposal.acceptedCount > thresholdPower) {
+            if (proposal.isActive and proposal.acceptedCount >= thresholdPower) {
                 let currentTime = Int.toText(Time.now());
                 let tempProposal : Proposal = {
                     ownerOfProposal = proposal.ownerOfProposal;
@@ -64,7 +64,7 @@ actor {
                 proposals.put(proposal.proposalId, tempProposal);
                 await WebpageControlCanister.setWebpageText(proposal.webPageText);
                 return
-            } else if (proposal.isActive and proposal.rejectedCount > thresholdPower) {
+            } else if (proposal.isActive and proposal.rejectedCount >= thresholdPower) {
                 let currentTime = Int.toText(Time.now());
                 let tempProposal : Proposal = {
                     ownerOfProposal = proposal.ownerOfProposal;

@@ -46,10 +46,12 @@ const NavigationBar = ({ wallet }) => {
 
           {!wallet && (
             <Nav className="me-auto">
-              <Nav.Link>Please authenticate to see the content of DAO</Nav.Link>
+              <Nav.Link>
+                Please authenticate to see the content of the DAO
+              </Nav.Link>
             </Nav>
           )}
-          <ConnectButton className="bg-dark" />
+          <ConnectButton style={{ backgroundColor: "white", color: "black" }} />
         </Container>
       </Navbar>
       <br />

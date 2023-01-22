@@ -135,6 +135,32 @@ img {
   text-decoration: none !important;
 }
 
+.custom-pagination-item {
+  color: black !important;
+}
+
+.page-item.active .page-link {
+  background-color: black;
+  color: white;
+  border-color: black;
+}
+
+.page-item .page-link {
+  background-color: white;
+  color: black;
+  border-color: black;
+}
+
+.page-link:hover {
+  color: rgb(255, 255, 255);
+  background-color: #424242;
+}
+
+/* Change focus color to yellow */
+.page-link:focus {
+  color: rgb(255, 255, 255);
+  background-color: #424242;
+}
 @keyframes pulse {
   0% {
     transform: scale(0.97);
