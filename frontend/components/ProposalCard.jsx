@@ -1,10 +1,13 @@
 import React from "react"
+import { Button } from "react-bootstrap"
 import Card from "react-bootstrap/Card"
 import ProgressBar from "react-bootstrap/ProgressBar"
+import { useCanister } from "@connect2ic/react"
 
 const ProposalCard = ({ item }) => {
   const accept = parseInt(item.acceptedCount)
   const reject = parseInt(item.rejectedCount)
+  const [backendDAO] = useCanister("backendDAO")
 
   let acceptRatio
   if (accept === 0 && reject === 0) {
@@ -44,6 +47,24 @@ const ProposalCard = ({ item }) => {
   let creationDate = new Date(+item.creationDate / 1000000)
 
   let formattedCr = formatDate(creationDate)
+  const acceptHandler = async (proposal) => {
+    try {
+      await backendDAO.vote(proposal, true)
+      console.log("Accepted")
+      console.log(proposal)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+  const rejectHandler = async (proposal) => {
+    try {
+      await backendDAO.vote(proposal, false)
+      console.log("Rejected")
+      console.log(proposal)
+    } catch (error) {
+      console.log(error)
+    }
+  }
 
   return (
     <Card className="w-100 child my-2">
@@ -84,6 +105,26 @@ const ProposalCard = ({ item }) => {
         </ProgressBar>
         <Card.Text>Proposal Date: {formattedCr}</Card.Text>
         <Card.Text>Result Date: </Card.Text>
+        <div className="container d-flex justify-content-center">
+          <div className="row my-2 w-25">
+            <div className="col">
+              <Button
+                className="btn-dark text-light"
+                onClick={() => acceptHandler(item.proposalId)}
+              >
+                Accept
+              </Button>
+            </div>
+            <div className="col">
+              <Button
+                className="btn-dark text-light"
+                onClick={() => rejectHandler(item.proposalId)}
+              >
+                Reject
+              </Button>
+            </div>
+          </div>
+        </div>
       </Card.Body>
       {/* <button
         onClick={() => {

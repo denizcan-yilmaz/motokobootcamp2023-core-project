@@ -17,10 +17,11 @@ const NewProposal = () => {
   return (
     <div className="container text-center my-5">
       <h2>Submit a Proposal</h2>
-      <input
+      <textarea
         type="text"
         placeholder="Enter a new proposal"
         onChange={(e) => setProposal(e.target.value)}
+        className="w-75 my-3"
       />
       <div className="container d-flex justify-content-center">
         <div className="row my-2 w-25">
@@ -29,7 +30,7 @@ const NewProposal = () => {
               className="btn btn-dark text-light"
               onClick={proposalHandler}
             >
-              Accept
+              Submit
             </Button>
           </div>
         </div>

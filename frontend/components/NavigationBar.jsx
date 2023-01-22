@@ -34,16 +34,6 @@ const NavigationBar = ({ wallet }) => {
               <Nav.Link>
                 <NavLink
                   activeClassName="is-active"
-                  to="/vote"
-                  className="non-active"
-                  style={{ textDecoration: "none" }}
-                >
-                  Vote
-                </NavLink>
-              </Nav.Link>
-              <Nav.Link>
-                <NavLink
-                  activeClassName="is-active"
                   to="/new-proposal"
                   className="non-active"
                   style={{ textDecoration: "none" }}

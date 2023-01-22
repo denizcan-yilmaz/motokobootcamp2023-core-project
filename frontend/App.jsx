@@ -53,11 +53,6 @@ function App() {
           </Route>
         )}
         {wallet && (
-          <Route path="/vote" exact>
-            <Vote />
-          </Route>
-        )}
-        {wallet && (
           <Route path="/new-proposal" exact>
             <NewProposal />
           </Route>
