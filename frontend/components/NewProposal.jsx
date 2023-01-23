@@ -3,13 +3,14 @@ import { useCanister } from "@connect2ic/react"
 import { Button } from "react-bootstrap"
 
 const NewProposal = () => {
-  const [proposal, setProposal] = useState(null)
+  const [proposal, setProposal] = useState("")
   const [backendDAO] = useCanister("backendDAO")
 
   const proposalHandler = async () => {
     try {
       await backendDAO.submit_proposal(proposal)
       console.log("Sent proposal")
+      setProposal("")
     } catch (error) {
       console.log(error)
     }
@@ -20,6 +21,7 @@ const NewProposal = () => {
       <textarea
         type="text"
         placeholder="Enter a new proposal"
+        value={proposal}
         onChange={(e) => setProposal(e.target.value)}
         className="w-75 my-3"
         rows={5}

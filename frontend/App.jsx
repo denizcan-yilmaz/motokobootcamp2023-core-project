@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useEffect, useState } from "react"
 import logo from "./assets/dfinity.svg"
 /*
  * Connect2ic provides essential utilities for IC app development
@@ -30,6 +30,7 @@ import NewProposal from "./components/NewProposal"
 function App() {
   const [wallet] = useWallet()
   const [assets] = useBalance()
+  const [isTouched, setIsTouched] = useState(false)
 
   useEffect(() => {
     document.title = "DAO"
@@ -48,13 +49,13 @@ function App() {
         </Route>
         {wallet && (
           <Route path="/proposals" exact>
-            <AllProposals />
+            <AllProposals isTouched={isTouched} setIsTouched={setIsTouched} />
           </Route>
         )}
         {wallet && (
           <Route path="/new-proposal" exact>
             <div className="d-flex aligns-items-center justify-content-center">
-              <NewProposal />
+              <NewProposal isTouched={isTouched} setIsTouched={setIsTouched} />
             </div>
           </Route>
         )}

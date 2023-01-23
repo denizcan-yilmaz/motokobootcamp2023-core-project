@@ -6,7 +6,7 @@ import Principal "mo:base/Principal";
 
 actor {
 
-    private stable var controlledText = "";
+    private stable var controlledText = "The Controlled Text";
     private stable var admin_canister_id = "rno2w-sqaaa-aaaaa-aaacq-cai";
 
     public type HttpRequest = {

@@ -114,19 +114,20 @@ actor {
         if (Nat.equal(text.size(), 0)) {
             return #err("You cannot propose empty text")
         };
+        let userPower = await votePower(caller);
         let tempProposal : Proposal = {
             ownerOfProposal = Principal.toText(caller);
             proposalId = Nat.toText(proposalCount);
             webPageText = text;
-            acceptedCount = 0;
+            acceptedCount = userPower;
             rejectedCount = 0;
             creationDate = Int.toText(Time.now());
             resultDate = Int.toText(Time.now());
             votersArray = [Principal.toText(caller)];
             isActive = true
         };
-        proposalCount := proposalCount +1;
         proposals.put(Nat.toText(proposalCount), tempProposal);
+        proposalCount := proposalCount +1;
         return #ok(tempProposal)
     };
 
@@ -140,7 +141,6 @@ actor {
 
     public shared ({ caller }) func vote(proposalId : Text, isAccepted : Bool) : async Result.Result<Proposal, Text> {
         let power = await votePower(caller);
-
         if (power < requiredPower) {
             return #err("Not enough DAO token")
         };

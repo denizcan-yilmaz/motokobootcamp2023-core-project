@@ -4,7 +4,7 @@ import Card from "react-bootstrap/Card"
 import ProgressBar from "react-bootstrap/ProgressBar"
 import { useCanister } from "@connect2ic/react"
 
-const ProposalCard = ({ item }) => {
+const ProposalCard = ({ item, isTouched, setIsTouched }) => {
   const accept = parseInt(item.acceptedCount) / 100000000
   const reject = parseInt(item.rejectedCount) / 100000000
   const [backendDAO] = useCanister("backendDAO")
@@ -54,9 +54,11 @@ const ProposalCard = ({ item }) => {
 
   const acceptHandler = async (proposal) => {
     try {
-      await backendDAO.vote(proposal, true)
+      const res = await backendDAO.vote(proposal, true)
+      console.log(res)
       console.log("Accepted")
       console.log(proposal)
+      setIsTouched((prev) => !prev)
     } catch (error) {
       console.log(error)
     }
@@ -64,9 +66,11 @@ const ProposalCard = ({ item }) => {
 
   const rejectHandler = async (proposal) => {
     try {
-      await backendDAO.vote(proposal, false)
+      const res = await backendDAO.vote(proposal, false)
+      console.log(res)
       console.log("Rejected")
       console.log(proposal)
+      setIsTouched((prev) => !prev)
     } catch (error) {
       console.log(error)
     }
@@ -106,14 +110,14 @@ const ProposalCard = ({ item }) => {
             variant="info"
             now={acceptRatio}
             key={1}
-            label={accept}
+            label={`${acceptRatio}%`}
           />
           <ProgressBar
             animated
             variant="danger"
             now={100 - acceptRatio}
             key={2}
-            label={reject}
+            label={`${100 - acceptRatio}%`}
           />
         </ProgressBar>
         <Card.Text>Proposal Date: {formattedCr}</Card.Text>

@@ -51,6 +51,15 @@ const NavigationBar = ({ wallet }) => {
               </Nav.Link>
             </Nav>
           )}
+          {wallet && (
+            <Nav.Link className="mx-3 text-light">
+              Welcome{" "}
+              <i>
+                {wallet?.principal?.slice(0, 5)}...
+                {wallet?.principal?.slice(-5, wallet?.principal?.length)}
+              </i>
+            </Nav.Link>
+          )}
           <ConnectButton style={{ backgroundColor: "white", color: "black" }} />
         </Container>
       </Navbar>

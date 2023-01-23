@@ -4,7 +4,7 @@ import { Col, Row } from "react-bootstrap"
 import ProposalCard from "./ProposalCard"
 import Pagination from "react-bootstrap/Pagination"
 
-const AllProposals = () => {
+const AllProposals = ({ isTouched, setIsTouched }) => {
   const [backendDAO] = useCanister("backendDAO")
   const [allProposals, setAllProposals] = useState([])
   const [active, setActive] = useState(1)
@@ -45,17 +45,23 @@ const AllProposals = () => {
 
   useEffect(() => {
     getAllProposals()
-  }, [active])
+  }, [active, isTouched])
 
   return (
     <>
       <h2 className="text-center mt-5">All Proposals</h2>
-
+      <p className="text-center">
+        {allProposals.length} Proposals - {PagItems.length} pages
+      </p>
       <div className="card-group w-50 mx-auto">
         {slice.map((item, index) => {
           return (
             <div className="container" key={index}>
-              <ProposalCard item={item} />
+              <ProposalCard
+                item={item}
+                isTouched={isTouched}
+                setIsTouched={setIsTouched}
+              />
             </div>
           )
         })}
