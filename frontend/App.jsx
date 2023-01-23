@@ -38,7 +38,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <NavigationBar wallet={wallet} />
+      <NavigationBar wallet={wallet} assets={assets} />
       <div className="App">
         <ConnectDialog />
       </div>

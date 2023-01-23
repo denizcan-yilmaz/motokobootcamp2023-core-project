@@ -28,10 +28,10 @@ actor {
     };
     public type ICRC1_Type = { owner : Principal; subaccount : ?[Nat8] };
 
-    let TokenCanister = actor ("rrkah-fqaaa-aaaaa-aaaaq-cai") : actor {
+    let TokenCanister = actor ("db3eq-6iaaa-aaaah-abz6a-cai") : actor {
         icrc1_balance_of : (account : ICRC1_Type) -> async Nat
     };
-    let WebpageControlCanister = actor ("renrk-eyaaa-aaaaa-aaada-cai") : actor {
+    let WebpageControlCanister = actor ("bwjew-bqaaa-aaaal-qbslq-cai") : actor {
         setWebpageText : (text : Text) -> async ()
     };
 

@@ -5,7 +5,7 @@ import { ConnectButton } from "@connect2ic/react"
 import React from "react"
 import { NavLink } from "react-router-dom"
 
-const NavigationBar = ({ wallet }) => {
+const NavigationBar = ({ wallet, assets }) => {
   return (
     <>
       <Navbar bg="dark" variant="dark" className="py-4 sticky-top">
@@ -63,6 +63,7 @@ const NavigationBar = ({ wallet }) => {
           <ConnectButton style={{ backgroundColor: "white", color: "black" }} />
         </Container>
       </Navbar>
+      {/* <button onClick={console.log(wallet, assets)}>click</button> */}
       <br />
     </>
   )

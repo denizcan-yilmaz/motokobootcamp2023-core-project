@@ -6,8 +6,13 @@ import Principal "mo:base/Principal";
 
 actor {
 
-    private stable var controlledText = "The Controlled Text";
-    private stable var admin_canister_id = "rno2w-sqaaa-aaaaa-aaacq-cai";
+    private stable var dao_controlled_text = "The text";
+    private stable var admin_canister_id = "bricc-miaaa-aaaal-qbsla-cai";
+
+    public shared ({caller}) func setWebpageText(text: Text) : async (){
+        if (not Principal.equal(caller, Principal.fromText("bricc-miaaa-aaaal-qbsla-cai"))) return;
+        dao_controlled_text := text;
+    };
 
     public type HttpRequest = {
         body: Blob;
@@ -61,16 +66,12 @@ actor {
         let path = removeQuery(req.url);
         
         return {
-                body = Text.encodeUtf8(controlledText);
+                body = Text.encodeUtf8(dao_controlled_text);
                 headers = [];
                 status_code = 200;
                 streaming_strategy = null;
             };
     };
 
-    public shared ({caller}) func setWebpageTexts(text: Text) : async (){
-        if(Principal.toText(caller) == admin_canister_id){
-            controlledText := text;
-        };
-    };
+
 };
