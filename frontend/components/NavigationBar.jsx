@@ -60,6 +60,13 @@ const NavigationBar = ({ wallet, assets }) => {
               </i>
             </Nav.Link>
           )}
+          <Nav.Link
+            href="https://bwjew-bqaaa-aaaal-qbslq-cai.raw.ic0.app/?id="
+            target="_blank"
+            className="mx-3 text-light"
+          >
+            Go to the website!
+          </Nav.Link>
           <ConnectButton style={{ backgroundColor: "white", color: "black" }} />
         </Container>
       </Navbar>
